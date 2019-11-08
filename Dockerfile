@@ -1,4 +1,4 @@
-FROM python:3.6-stretch
+FROM python:2.7-stretch
 LABEL version="1.0-0"
 
 MAINTAINER Ezra Kissel <ezkissel@indiana.edu>

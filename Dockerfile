@@ -6,7 +6,7 @@ MAINTAINER Ezra Kissel <ezkissel@indiana.edu>
 EXPOSE 8889/tcp
 
 RUN apt-get update
-RUN apt-get -y install sudo mongodb redis-server python-setuptools python-pip python-m2crypto
+RUN apt-get -y install sudo mongodb redis-server python-setuptools python-pip
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/unis && \

@@ -1,12 +1,14 @@
-FROM python:2.7-stretch
-LABEL version="1.0-0"
+FROM python:3.7-stretch
+LABEL version="1.1-0"
 
-MAINTAINER Ezra Kissel <ezkissel@indiana.edu>
+MAINTAINER Jeremy Musser <jemusser@iu.edu>
 
 EXPOSE 8889/tcp
 
+RUN useradd -u 999 -d /var/lib/mongodb -s /bin/false mongodb
+
 RUN apt-get update
-RUN apt-get -y install sudo mongodb redis-server python-setuptools python-pip
+RUN apt-get -y install sudo mongodb redis-server
 
 RUN export uid=1000 gid=1000 && \
     mkdir -p /home/unis && \
@@ -21,7 +23,7 @@ ENV HOME /home/unis
 WORKDIR $HOME
 
 RUN git clone -b develop https://github.com/periscope-ps/unis
-RUN cd unis && sudo python2 setup.py install && cd -
+RUN cd unis && sudo python3 setup.py build install && cd -
 
 ADD ms.cfg /etc/periscope/ms.cfg
 ADD run.sh .
